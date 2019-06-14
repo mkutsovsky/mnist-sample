@@ -8,7 +8,6 @@ project: "mnist-sample"
 type: "single" # [single|multi-grpc|multi-mpi]
 ports: "5000" # [optional, default:5000]
 
-
 worker:
   container: "tensorflow/tensorflow:1.13.1-gpu"
   command: "python mnist.py"
