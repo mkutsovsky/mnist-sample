@@ -14,3 +14,18 @@ worker:
   machine-type: "K80"
   count: 1 # [required for multi-node]
 
+model:
+  type: TensorFlow
+  path: /artifacts
+​
+checks:
+  default:
+    precision: 3
+    round: up
+    only-prs: true
+  tensorflow:accuracy:
+    target: 0.7..
+    aggregation: mean
+  tensorflow:loss:
+    target: ..0.025
+    aggregation: max
