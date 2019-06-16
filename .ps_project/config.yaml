@@ -10,7 +10,7 @@ ports: "5000" # [optional, default:5000]
 worker:
   container: "tensorflow/tensorflow:1.13.1-gpu"
   command: "python mnist.py"
-  machine-type: "K80"
+  machine-type: "P100"
   count: 1 # [required for multi-node]
 
 model:
