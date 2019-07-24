@@ -1,0 +1,27 @@
+# .ps_project/config.yaml:
+
+version: 1
+
+project: "mnist-sample"
+ # [optional, default:<repo name>]
+type: "single" # [single|multi-grpc|multi-mpi]
+ports: "5000" # [optional, default:5000]
+
+worker:
+  container: "tensorflow/tensorflow:1.13.1-gpu"
+  command: "python mnist.py"
+  machine-type: "P100"
+  count: 1 # [required for multi-node]
+
+model:
+  type: Tensorflow
+  path: '/artifacts'
+checks:
+  tensorflow:loss:
+    target: 0.0..1.0
+    aggregate: max
+  tensorflow:accuracy:
+    target: 0.988..1.000
+    aggregate: median
+  defaults:
+    precision: 3
