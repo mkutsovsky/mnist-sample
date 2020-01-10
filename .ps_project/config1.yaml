@@ -11,7 +11,7 @@ worker:
   container: "tensorflow/tensorflow:1.13.1-gpu"
   command: "python mnist.py"
   machine-type: "P100"
-  count: 1 # [required for multi-node]
+  count: 2 # [required for multi-node]
 
 model:
   type: Tensorflow
