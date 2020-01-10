@@ -17,19 +17,19 @@ APIs.
 ### Install Gradient CLI
 
 ```
-pip install -U paperspace
+pip install -U gradient
 ```
 
-[Please check our documentation on how to install Gradient CLI and obtain a Token](https://app.gitbook.com/@paperspace/s/gradient/cli/install-the-cli)
+[Please check our documentation on how to install Gradient CLI and obtain a Token](https://docs.paperspace.com/gradient/get-started/install-the-cli)
 
-### Create project and obtain its handle
+### Create project and get project id
 
-[Please check our documentation on how to create a project](https://app.gitbook.com/@paperspace/s/gradient/projects/create-a-project)
+[Please check our documentation on how to create a project and get the project id](https://docs.paperspace.com/gradient/projects/create-a-project)
 
 ### Create and start single node experiment
 
 ```
-paperspace-python experiments createAndStart singlenode \
+gradient experiments run singlenode \
   --name mnist \
   --projectId <your-project-id> \
   --experimentEnv "{\"EPOCHS_EVAL\":5,\"TRAIN_EPOCHS\":10,\"MAX_STEPS\":1000,\"EVAL_SECS\":10}" \
@@ -46,11 +46,11 @@ That's it!
 ### Create and start distributed multinode experiment
 
 ```
-paperspace-python experiments createAndStart multinode \
+gradient experiments run multinode \
   --name mnist-multinode \
   --projectId <your-project-id> \
   --experimentEnv "{\"EPOCHS_EVAL\":5,\"TRAIN_EPOCHS\":10,\"MAX_STEPS\":1000,\"EVAL_SECS\":10}" \
-  --experimentTypeId GRPC \
+  --experimentType GRPC \
   --workerContainer tensorflow/tensorflow:1.13.1-gpu-py3 \
   --workerMachineType K80 \
   --workerCommand 'pip install -r requirements.txt && python mnist.py' \
@@ -243,3 +243,10 @@ The SavedModel will be saved in a timestamped directory under `models` subdirect
 ## Inspecting and getting predictions with the SavedModel file
 
 You can also use the [`saved_model_cli`](https://www.tensorflow.org/guide/saved_model#cli_to_inspect_and_execute_savedmodel) tool to inspect and execute the SavedModel.
+
+### Running TensorBoards
+
+Just type (change name mnist to your model name if you have other name):
+```
+tensorboard --logdir models/mnist 
+```
